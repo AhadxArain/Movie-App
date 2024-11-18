@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    html{
+        background-image: cover;
+    }
+    .container {
+        width: 100%;
+    }
+
+    .img-container {
+        background-color: black;
+        width: 100%;
+        height: 900px;
+    }
+
+    .name-cont {
+        width: 50%;
+        position: absolute;
+        left: 130px;
+        bottom: 400px;
+        top: 250px;
+    }
+
+    .description {
+        width: 70%;
+        margin-left: 40px;
+    }
+
+    .btn {
+        border: 1px solid black;
+        margin-left: 60px;
+        margin-top: 30px;
+    }
+
+    .text {
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        text-align: start;
+        font-weight: 900;
+        font-family: Arial, Helvetica, sans-serif;
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    .text-1 {
+        font-size: 20px;
+        color: white;
+
+    }
+
+    .genres {
+        border: 1px solid black;
+        width: 50%;
+        margin-left: 50px;
+    }
+
+    .tagline {
+        color: white;
+        position: absolute;
+        top: 70px;
+        font-size: 30px;
+        font-weight: 600;
+        font-family: sans-serif;
+        -webkit-text-stroke: 1px rgb(0, 0, 0);
+
+    }
+
+    .genres-b {
+
+        color: white;
+        font: 20px;
+    }
+</style>
+
+<body>
+    <div id="imgcontainer" class="img-container"></div>
+    <!-- <div id="namecont" class="name-cont"><p class="text"></p></div>
+    <div id="description" class="description"> <p></p> -->
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id')
+
+    getMovie(id)
+
+
+
+
+
+
+    const img_container = document.getElementById("#imgcontainer");
+    const namecont = document.getElementById("#namecont");
+    const description = document.getElementById("#description");
+
+
+
+
+
+
+    function getMovie(id) {
+        const url = `https://api.themoviedb.org/3/movie/${id}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkODYyNmE0ZjQyZDY2NTZmZTNkZTk4YTAwM2FjNzk3YSIsIm5iZiI6MTczMDkxMzcwNy43MjYzNDcsInN1YiI6IjY3MjllNmZmMjZiNjA1YmMxOWU1NjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GyC5Vn3kddNRysFJ1mBFwmc-QxosxLsqjAyofhNvElI'
+            }
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+                imgcontainer.innerHTML += `<div class="container"><div id="imgcontainer" class="img-container">
+           <img src="https://image.tmdb.org/t/p/w500/${data.backdrop_path}" class="card-img-top" height="400px"  alt="..." </div>
+           <div id="namecont" class="name-cont"><p class="text">${data.title}</p>
+            <p class="tagline">${data.tagline}</p></div>
+                              <div class="genres">
+            <div><p class="genres-b">${data.release_date}
+                ${data.original_language} </p></div>
+            <div><p></p></div>
+            <div><p></p></div>
+        </div>
+           <div id="description" class="description"><p class="text-1">${data.overview}</p>
+    </div></div>`
+            })
+            .catch(err => console.error(err));
+    }
+
+</script>
+
+</html>

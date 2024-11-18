@@ -1,0 +1,55 @@
+ .Movie-app {
+    width: 100%;
+    background-color: black;
+    padding: 20px;
+ }
+
+ .text-m {
+    color: white;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 30px;
+ }
+
+ .cards {
+    width: 90%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .dropdown-a {
+    position: absolute;
+    left: 100px;
+ }
+
+ .dropdown-b {
+    position: absolute;
+    left: 300px;
+ }
+
+ .card-cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 70px;
+    flex-wrap: wrap;
+ }
+
+ .movieholder-1 {
+    border: 1px solid black;
+    height: 300px;
+    border-radius: 10px;
+ }
+
+ /* .card-text{
+    overflow-y: scroll;
+ } */
+ .overview-container {
+    height: 250px;
+    overflow-y: scroll;
+ }
+ ::-webkit-scrollbar{
+   width: 10px;
+ }
